@@ -31,7 +31,8 @@ COPY --from=builder /app/.next/static  ./standalone/.next/static
 #COPY --from=builder /app/.env.development ./standalone
 COPY --from=builder /app/public  ./standalone/public
 
-
+ENV HOSTNAME=0.0.0.0   
+ENV PORT=3000
 EXPOSE 3000
 
 CMD ["standalone/server.js"]

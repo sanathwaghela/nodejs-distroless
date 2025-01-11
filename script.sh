@@ -15,8 +15,6 @@ docker exec -it nodejs-container sh
 # to debug distroless image
 docker exec -it nodejs-distroless-container sh  # this will not work as distroless image does not have shell
 
-# to debug distroless image with debug tags 
-docker exec -it nodejs-distroless-debug-container sh
 
 # will use cdebug to debug distroless image on docker 
 cdebug exec -it --image=nixery.dev/shell/vim/ps/tshark/curl nodejs-distroless-container
@@ -24,5 +22,12 @@ cdebug exec -it --image=nixery.dev/shell/vim/ps/tshark/curl nodejs-distroless-co
 #  will use cdebug to debug distroless image on k8s
  cdebug exec --namespace=default --image=alpine -it pod/nodejs-distroless-596b695965-9mwqs
 
+#  will use kubectl to debug distroless image on k8s
+kubectl debug -it nodejs-distroless-596b695965-q825m --image=alpine --target=nodejs-distroless
+
  # to check which Ephermal container is running on k8s
 kubectl describe pods/<pod-name>
+
+
+# to debug distroless image with debug tags 
+docker exec -it nodejs-distroless-debug-container sh
